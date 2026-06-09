@@ -633,12 +633,13 @@ async function send(name) {
   const data = collectData(section);
 
   try {
-    // Google Apps Script requer no-cors; a resposta será opaque mas o dado chega
+    // Apps Script com no-cors só lê parâmetros via URLSearchParams (form data)
+    const params = new URLSearchParams();
+    params.append('payload', JSON.stringify(data));
     await fetch(SHEET_URL, {
       method: 'POST',
       mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
+      body: params,
     });
     btn.disabled = false;
     btn.innerHTML = originalHTML;
