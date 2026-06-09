@@ -545,7 +545,7 @@ function scSimp(btn, gid) {
 // ══════════════════════════════════════════════════════
 // CONFIGURAÇÃO — cole aqui a URL do seu Apps Script
 // ══════════════════════════════════════════════════════
-const SHEET_URL = 'COLE_AQUI_A_URL_DO_APPS_SCRIPT';
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbwlO4g9sNJ-83Zu7ag-N-JQm2hstawPZIuKNaFcFxjcSJeiJok7wxJOImSt0YINC03L/exec';
 
 function getRadio(name) {
   const el = document.querySelector(`input[name="${name}"]:checked`);
@@ -633,8 +633,7 @@ async function send(name) {
   const data = collectData(section);
 
   // Se URL não foi configurada, mostra toast de aviso e restaura
-  if (SHEET_URL === 'https://script.google.com/macros/s/AKfycbyI54dVbIGvW2-NbJSIeQlj0PqguKrtRslDWPkweksUoxAEk-diGTZSIGmPzXyqbii8/exec
-') {
+  if (SHEET_URL === 'https://script.google.com/macros/s/AKfycbyKV0aItX7J7L-Uv1_Xeszx-iV37VzK0w_cGMSJGJB3VzzNR_okGLYqCRnHbZeZLlhI/exec') {
     setTimeout(() => {
       btn.disabled = false;
       btn.innerHTML = originalHTML;
