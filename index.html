@@ -633,7 +633,8 @@ async function send(name) {
   const data = collectData(section);
 
   // Se URL não foi configurada, mostra toast de aviso e restaura
-  if (SHEET_URL === 'COLE_AQUI_A_URL_DO_APPS_SCRIPT') {
+  if (SHEET_URL === 'https://script.google.com/macros/s/AKfycbyI54dVbIGvW2-NbJSIeQlj0PqguKrtRslDWPkweksUoxAEk-diGTZSIGmPzXyqbii8/exec
+') {
     setTimeout(() => {
       btn.disabled = false;
       btn.innerHTML = originalHTML;
