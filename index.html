@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Avaliação da Trainee — Cavani's Cleaning Services</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal:#0d9e82;--teal-dark:#0b7f68;--teal-light:#e0f5f0;--teal-mid:#9eddd1;
+  --green-bg:#eaf3de;--green-text:#3b6d11;
+  --amber-bg:#faeeda;--amber-text:#854f0b;
+  --red-bg:#fcebeb;--red-text:#a32d2d;
+  --gray-50:#fafaf9;--gray-100:#f4f3f0;--gray-200:#e8e6e1;
+  --gray-400:#a09e97;--gray-600:#5f5e5a;--gray-800:#2c2c2a;
+  --white:#ffffff;
+  --r-sm:6px;--r-md:10px;--r-lg:14px;
+  --sh-sm:0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04);
+  --sh-md:0 4px 12px rgba(0,0,0,.08),0 2px 4px rgba(0,0,0,.04);
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--gray-100);color:var(--gray-800);min-height:100vh;font-size:15px;line-height:1.6}
+.topbar{background:var(--white);border-bottom:1px solid var(--gray-200);position:sticky;top:0;z-index:100;box-shadow:var(--sh-sm)}
+.topbar-inner{max-width:760px;margin:0 auto;padding:0 20px;display:flex;align-items:center;gap:14px;height:54px}
+.logo{width:30px;height:30px;background:var(--teal);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.logo svg{width:16px;height:16px;fill:white}
+.topbar-title{font-size:14px;font-weight:500;color:var(--gray-800);flex:1}
+.topbar-title span{color:var(--gray-400);font-weight:400}
+.lang-sel{display:flex;gap:3px;background:var(--gray-100);border-radius:var(--r-md);padding:3px;margin-left:auto}
+.lang-btn{padding:4px 10px;border-radius:var(--r-sm);font-size:11px;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;border:none;background:none;color:var(--gray-400);transition:all .15s;letter-spacing:.04em}
+.lang-btn:hover{color:var(--gray-800)}
+.lang-btn.on{background:var(--white);color:var(--teal);box-shadow:var(--sh-sm)}
+.hero{background:var(--white);border-bottom:4px solid var(--teal);padding:36px 20px 30px}
+.hero-inner{max-width:760px;margin:0 auto}
+.eyebrow{display:inline-flex;align-items:center;gap:6px;background:var(--teal-light);color:var(--teal);font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:14px}
+h1{font-family:'DM Serif Display',serif;font-size:clamp(24px,4vw,34px);font-weight:400;line-height:1.2;margin-bottom:8px}
+h1 em{font-style:italic;color:var(--teal)}
+.hero-desc{font-size:14px;color:var(--gray-600);max-width:540px;line-height:1.7}
+.hero-pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;padding-top:18px;border-top:1px solid var(--gray-200)}
+.pill{display:inline-flex;align-items:center;gap:5px;background:var(--gray-100);color:var(--gray-600);font-size:12px;font-weight:500;padding:5px 12px;border-radius:20px}
+.pill .dot{width:6px;height:6px;border-radius:50%;background:var(--teal)}
+.nota{background:var(--teal-light);border-left:3px solid var(--teal);padding:13px 18px;border-radius:0 var(--r-md) var(--r-md) 0;margin:0 20px 0}
+.nota-inner{max-width:760px;margin:0 auto}
+.nota p{font-size:13px;color:var(--teal-dark);line-height:1.5}
+.nota p strong{font-weight:600}
+.tabs-wrap{background:var(--white);border-bottom:1px solid var(--gray-200);position:sticky;top:54px;z-index:90;box-shadow:var(--sh-sm)}
+.tabs-inner{max-width:760px;margin:0 auto;padding:0 20px;display:flex;overflow-x:auto;scrollbar-width:none}
+.tabs-inner::-webkit-scrollbar{display:none}
+.tab{padding:13px 16px;font-size:13px;font-weight:500;font-family:'DM Sans',sans-serif;color:var(--gray-400);border:none;background:none;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;transition:all .18s;display:flex;align-items:center;gap:6px}
+.tab:hover{color:var(--gray-800)}.tab.on{color:var(--teal);border-bottom-color:var(--teal)}
+.tab-badge{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:var(--gray-100);font-size:10px;font-weight:700;color:var(--gray-600);transition:all .18s}
+.tab.on .tab-badge{background:var(--teal-light);color:var(--teal)}
+.main{max-width:760px;margin:0 auto;padding:24px 20px 80px}
+.section{display:none}.section.on{display:block;animation:fadeUp .2s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.ph{display:flex;align-items:flex-start;gap:12px;padding:16px 18px;background:var(--white);border-radius:var(--r-lg);border-left:4px solid var(--teal);box-shadow:var(--sh-sm);margin-bottom:18px}
+.ph-icon{width:38px;height:38px;background:var(--teal-light);border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:17px}
+.ph h2{font-family:'DM Serif Display',serif;font-size:17px;font-weight:400;margin-bottom:2px}.ph p{font-size:13px;color:var(--gray-600);line-height:1.5}
+.ph-pill{margin-left:auto;flex-shrink:0;background:var(--teal-light);color:var(--teal);font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;white-space:nowrap;align-self:flex-start}
+.noreprova{display:flex;align-items:flex-start;gap:10px;background:var(--green-bg);border-radius:var(--r-lg);padding:12px 16px;margin-bottom:18px}
+.noreprova p{font-size:13px;color:var(--green-text);line-height:1.5}
+.card{background:var(--white);border-radius:var(--r-lg);box-shadow:var(--sh-sm);border:1px solid var(--gray-200);margin-bottom:14px;overflow:hidden}
+.ch{padding:16px 22px 12px;border-bottom:1px solid var(--gray-100)}.ch h3{font-size:14px;font-weight:600;color:var(--gray-800);margin-bottom:2px}
+.cb{padding:18px 22px}
+.ig{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:500px){.ig{grid-template-columns:1fr}}
+.if label{display:block;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--gray-400);margin-bottom:5px}
+.if input,.if select{width:100%;padding:9px 11px;border:1.5px solid var(--gray-200);border-radius:var(--r-sm);font-size:14px;font-family:'DM Sans',sans-serif;color:var(--gray-800);background:var(--gray-50);outline:none;transition:border-color .15s}
+.if input:focus,.if select:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(13,158,130,.12)}
+.field{margin-bottom:20px}.field:last-child{margin-bottom:0}
+.fl{display:block;font-size:14px;font-weight:500;color:var(--gray-800);margin-bottom:9px;line-height:1.5}
+.fl .req{color:var(--teal);margin-left:2px}
+.rg{display:flex;flex-direction:column;gap:6px}
+.ro{display:flex;align-items:flex-start;gap:9px;padding:10px 13px;border:1.5px solid var(--gray-200);border-radius:var(--r-md);cursor:pointer;transition:all .15s;background:var(--gray-50)}
+.ro:hover{border-color:var(--teal-mid);background:var(--teal-light)}
+.ro input{accent-color:var(--teal);width:16px;height:16px;cursor:pointer;flex-shrink:0;margin-top:2px}
+.ro label{font-size:14px;color:var(--gray-800);cursor:pointer;line-height:1.4}
+.score-row{display:flex;gap:7px;align-items:center}
+.sb{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--gray-200);background:var(--white);font-size:15px;font-weight:600;font-family:'DM Sans',sans-serif;color:var(--gray-600);cursor:pointer;transition:all .15s;flex-shrink:0}
+.sb:hover{border-color:var(--teal);color:var(--teal);background:var(--teal-light)}
+.sb.sel{background:var(--teal);border-color:var(--teal);color:var(--white);box-shadow:0 2px 8px rgba(13,158,130,.3)}
+.sc-labels{display:flex;justify-content:space-between;margin-top:5px;padding:0 2px}.sc-labels span{font-size:11px;color:var(--gray-400)}
+textarea{width:100%;padding:10px 11px;border:1.5px solid var(--gray-200);border-radius:var(--r-sm);font-size:14px;font-family:'DM Sans',sans-serif;color:var(--gray-800);background:var(--gray-50);resize:vertical;min-height:68px;outline:none;transition:border-color .15s;line-height:1.5}
+textarea:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(13,158,130,.12);background:var(--white)}
+.div{border:none;border-top:1px solid var(--gray-100);margin:20px 0}
+.acts{display:flex;align-items:center;justify-content:space-between;padding-top:18px;border-top:1px solid var(--gray-100);flex-wrap:wrap;gap:10px}
+.btn-p{background:var(--teal);color:var(--white);border:none;border-radius:var(--r-md);padding:11px 26px;font-size:14px;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all .15s;box-shadow:0 2px 8px rgba(13,158,130,.25);display:flex;align-items:center;gap:7px}
+.btn-p:hover{background:var(--teal-dark);transform:translateY(-1px)}
+.btn-g{background:none;border:1.5px solid var(--gray-200);border-radius:var(--r-md);padding:11px 18px;font-size:14px;font-weight:500;font-family:'DM Sans',sans-serif;color:var(--gray-600);cursor:pointer;transition:all .15s}
+.btn-g:hover{border-color:var(--gray-400);color:var(--gray-800)}
+.toast{position:fixed;bottom:22px;right:22px;background:var(--gray-800);color:var(--white);padding:12px 18px;border-radius:var(--r-md);font-size:14px;font-weight:500;box-shadow:var(--sh-md);transform:translateY(80px);opacity:0;transition:all .3s cubic-bezier(.34,1.56,.64,1);z-index:600;max-width:300px;display:flex;align-items:center;gap:9px}
+.toast.show{transform:translateY(0);opacity:1}
+.t-icon{width:20px;height:20px;background:var(--green-text);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+@media(max-width:600px){.topbar-inner{padding:0 12px}.main{padding:16px 12px 60px}}
+/* ── SPINNER ── */
+.btn-p:disabled{opacity:.7;cursor:not-allowed;transform:none!important}
+.spin{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:spin .6s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+/* ── PRINT ── */
+@media print{
+  .topbar,.tabs-wrap,.lang-sel,.acts,.btn-p,.btn-g,.toast,.noreprova,.nota{display:none!important}
+  body{background:#fff;font-size:12px}
+  .hero{border:none;padding:16px 0 12px}
+  .card{box-shadow:none;border:1px solid #ddd;break-inside:avoid;margin-bottom:10px}
+  .section{display:block!important}
+  .main{padding:0}
+  .ro{border:1px solid #ccc;padding:6px 10px}
+  .ro input{display:none}
+  h1{font-size:22px}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="logo"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
+    <div class="topbar-title">Cavani's Cleaning <span id="topbar-sub"></span></div>
+    <button onclick="window.print()" style="padding:5px 12px;border-radius:8px;border:1.5px solid var(--gray-200);background:var(--white);font-size:12px;font-weight:600;font-family:'DM Sans',sans-serif;color:var(--gray-600);cursor:pointer;display:flex;align-items:center;gap:5px" title="Imprimir / Salvar PDF"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>PDF</button>
+    <div class="lang-sel">
+      <button class="lang-btn on" onclick="setLang('pt')">PT</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('es')">ES</button>
+    </div>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow" id="hero-ey"></div>
+    <h1 id="hero-h1"></h1>
+    <p class="hero-desc" id="hero-desc"></p>
+    <div class="hero-pills" id="hero-pills"></div>
+  </div>
+</div>
+
+<div class="nota"><div class="nota-inner"><p id="nota-txt"></p></div></div>
+
+<div class="tabs-wrap">
+  <div class="tabs-inner" role="tablist">
+    <button class="tab on" onclick="go('s1')" id="tab-s1" role="tab"><span class="tab-badge">1</span><span id="tab-s1-lbl"></span></button>
+    <button class="tab" onclick="go('s2')" id="tab-s2" role="tab"><span class="tab-badge">2</span><span id="tab-s2-lbl"></span></button>
+  </div>
+</div>
+
+<main class="main">
+
+<div class="section on" id="s1">
+  <div class="ph"><div class="ph-icon">✍️</div><div><h2 id="ph1-h"></h2><p id="ph1-p"></p></div><div class="ph-pill" id="ph1-pill"></div></div>
+  <div class="noreprova"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3b6d11" stroke-width="2" style="flex-shrink:0;margin-top:1px"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><p id="noreprova-txt"></p></div>
+
+  <div class="card"><div class="ch"><h3 id="s1-ident-h"></h3></div><div class="cb">
+    <div class="ig">
+      <div class="if"><label id="s1-l-nome"></label><input type="text" id="s1_nome" placeholder="..."></div>
+      <div class="if"><label id="s1-l-tr"></label><input type="text" id="s1_tr" placeholder="..."></div>
+      <div class="if"><label id="s1-l-data"></label><input type="date" id="s1_data" class="auto-date"></div>
+      <div class="if"><label id="s1-l-sem"></label>
+        <select id="s1_sem">
+          <option value="" id="s1-opt0"></option>
+          <option value="1" id="s1-opt1"></option>
+          <option value="2" id="s1-opt2"></option>
+        </select>
+      </div>
+    </div>
+  </div></div>
+
+  <div class="card"><div class="ch"><h3 id="s1-cl-h"></h3></div><div class="cb" id="s1-cl-body"></div></div>
+  <div class="card"><div class="ch"><h3 id="s1-fb-h"></h3></div><div class="cb" id="s1-fb-body"></div></div>
+  <div class="card"><div class="ch"><h3 id="s1-ap-h"></h3></div><div class="cb" id="s1-ap-body"></div></div>
+</div>
+
+<div class="section" id="s2">
+  <div class="ph"><div class="ph-icon">🏃</div><div><h2 id="ph2-h"></h2><p id="ph2-p"></p></div><div class="ph-pill" id="ph2-pill"></div></div>
+  <div class="noreprova"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3b6d11" stroke-width="2" style="flex-shrink:0;margin-top:1px"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><p id="noreprova-txt2"></p></div>
+
+  <div class="card"><div class="ch"><h3 id="s2-ident-h"></h3></div><div class="cb">
+    <div class="ig">
+      <div class="if"><label id="s2-l-nome"></label><input type="text" id="s2_nome" placeholder="..."></div>
+      <div class="if"><label id="s2-l-tr"></label><input type="text" id="s2_tr" placeholder="..."></div>
+      <div class="if"><label id="s2-l-data"></label><input type="date" id="s2_data" class="auto-date"></div>
+      <div class="if"><label id="s2-l-sem"></label>
+        <select id="s2_sem">
+          <option value="" id="s2-opt0"></option>
+          <option value="3" id="s2-opt3"></option>
+          <option value="4" id="s2-opt4"></option>
+        </select>
+      </div>
+    </div>
+  </div></div>
+
+  <div class="card"><div class="ch"><h3 id="s2-vel-h"></h3></div><div class="cb" id="s2-vel-body"></div></div>
+  <div class="card"><div class="ch"><h3 id="s2-fb-h"></h3></div><div class="cb" id="s2-fb-body"></div></div>
+  <div class="card"><div class="ch"><h3 id="s2-auto-h"></h3></div><div class="cb" id="s2-auto-body"></div></div>
+</div>
+
+</main>
+
+<div class="toast" id="toast"><div class="t-icon"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><span id="toast_m"></span></div>
+
+<script>
+// ══════════════════════════════════════════════════════
+// I18N — 3 idiomas completos
+// ══════════════════════════════════════════════════════
+const LANGS = {
+  pt: {
+    topbarSub:'/ Formulário da Trainee',
+    heroEy:'● Para Trainees',
+    heroH1:'Como está sendo seu <em>treinamento?</em>',
+    heroDesc:'Preencha estes formulários com honestidade. Suas respostas ajudam a melhorar o processo de treinamento para você e para todas.',
+    pill1:'Suas respostas não te reprovam', pill2:'Fase Técnica — 1×/semana', pill3:'Fase Agilidade — 1×/semana',
+    nota:'<strong>Importante:</strong> Este formulário <strong>não te reprova</strong>. Ele existe para garantir que o treinamento seja cada vez melhor para você e para todas as próximas trainees.',
+    tab1:'Semanas 1 e 2 — Técnica', tab2:'Semanas 3 e 4 — Agilidade',
+    ph1H:'Formulário 1 — Avaliação do Treinamento Técnico',
+    ph1P:'Preencha uma vez por semana durante as Semanas 1 e 2.',
+    ph1Pill:'Sem 1 e 2 · 1×/semana',
+    ph2H:'Formulário 2 — Avaliação de Agilidade',
+    ph2P:'Preencha uma vez por semana durante as Semanas 3 e 4.',
+    ph2Pill:'Sem 3 e 4 · 1×/semana',
+    noreprova:'<strong>Lembre-se:</strong> Este formulário <strong>não te reprova</strong>. Ele existe para garantir que o treinamento seja cada vez melhor.',
+    identH:'Identificação', lNome:'Seu nome', lTr:'Nome da Treinadora', lData:'Data', lSem:'Semana',
+    semOpt0:'Selecione', semOpt1:'Semana 1', semOpt2:'Semana 2', semOpt3:'Semana 3', semOpt4:'Semana 4',
+    s1ClH:'Como foi a clareza das instruções?',
+    s1Cl1:'As instruções técnicas foram fáceis de entender?',
+    s1Cl1a:'Sim, entendi tudo claramente', s1Cl1b:'Parcialmente — algumas partes ficaram confusas', s1Cl1c:'Não — tive muita dificuldade',
+    s1Cl2:'A treinadora demonstrou o processo antes de pedir para você executar?',
+    s1Cl2a:'Sempre', s1Cl2b:'Às vezes', s1Cl2c:'Raramente ou nunca',
+    s1Cl3:'Você se sentiu à vontade para fazer perguntas?',
+    s1Cl3a:'Sim', s1Cl3b:'Às vezes, mas senti um pouco de receio', s1Cl3c:'Não me senti à vontade',
+    s1FbH:'Como foi o feedback da treinadora?',
+    s1Fb1:'O feedback foi dado de forma respeitosa e construtiva?',
+    s1Fb1a:'Sim, sempre respeitosa', s1Fb1b:'Na maioria das vezes', s1Fb1c:'Não, me senti desconfortável',
+    s1Fb2:'Quando a treinadora corrigiu algo, a explicação do "porquê" ficou clara?',
+    s1Fb2a:'Sim, sempre explicou o motivo', s1Fb2b:'Às vezes', s1Fb2c:'Não, só dizia o que estava errado',
+    s1Fb3:'A treinadora esteve disponível para tirar suas dúvidas?',
+    s1Fb3a:'Sim, sempre disponível', s1Fb3b:'Na maioria das vezes', s1Fb3c:'Não, tive dificuldade',
+    s1ApH:'Sobre o seu aprendizado',
+    s1Ap1:'Você entendeu a ordem e os processos de limpeza desta semana?',
+    s1Ap1a:'Sim, entendi bem', s1Ap1b:'Parcialmente', s1Ap1c:'Não, ainda tenho muitas dúvidas',
+    s1Ap2:'Você recebeu todos os materiais necessários para fazer um bom trabalho?',
+    s1Ap2a:'Sim', s1Ap2b:'Parcialmente — faltou alguma coisa', s1Ap2c:'Não',
+    s1Ap3:'Você se sente segura para admitir quando esqueceu de limpar algum detalhe?',
+    s1Ap3a:'Sim, me sinto à vontade', s1Ap3b:'Às vezes tenho receio', s1Ap3c:'Não, prefiro não admitir',
+    s1NotaLbl:'Como você avalia o treinamento desta semana no geral?',
+    muitoRuim:'Muito ruim', excelente:'Excelente',
+    s1T1:'Qual parte do treinamento foi mais difícil para você nesta semana?',
+    s1T1Ph:'Descreva o que foi mais desafiador...',
+    s1T2:'Existe algum produto ou processo que você ainda não se sente segura para usar?',
+    s1T2Ph:'Se houver, descreva aqui...',
+    s1T3:'O que você mais aprendeu de útil nesta semana?',
+    s1T3Ph:'Compartilhe o principal aprendizado...',
+    s2VelH:'Sua evolução de velocidade',
+    s2Vel1:'Você se sente mais rápida do que no início do treinamento?',
+    s2Vel1a:'Sim, percebo minha evolução claramente', s2Vel1b:'Um pouco mais rápida, mas ainda com dificuldade', s2Vel1c:'Ainda não percebo melhora de velocidade',
+    s2Vel2:'Consegue executar a maioria das tarefas sem perguntar constantemente?',
+    s2Vel2a:'Sim, me sinto mais independente', s2Vel2b:'Parcialmente — algumas tarefas precisam de apoio', s2Vel2c:'Não, ainda preciso de muita orientação',
+    s2Vel3:'O tempo estipulado para as tarefas foi realista para seu nível atual?',
+    s2Vel3a:'Sim, consigo cumprir dentro do tempo', s2Vel3b:'Quase — fico um pouco além do tempo em algumas tarefas', s2Vel3c:'Não, o tempo é muito curto para meu ritmo atual',
+    s2FbH:'Feedback e apoio da treinadora',
+    s2Fb1:'O feedback sobre sua velocidade foi claro e útil?',
+    s2Fb1a:'Sim, entendi bem o que preciso melhorar', s2Fb1b:'Parcialmente', s2Fb1c:'Não recebi feedback claro',
+    s2Fb2:'Você se sente mais confiante no seu ritmo de trabalho?',
+    s2Fb2a:'Sim, muito mais confiante', s2Fb2b:'Um pouco mais confiante', s2Fb2c:'Ainda me sinto insegura',
+    s2Fb3:'Existe algum equipamento ou produto que ajudaria sua agilidade?',
+    s2Fb3Ph:'Se houver, descreva aqui...',
+    s2AutoH:'Autoavaliação da semana',
+    s2Auto1:'Tarefa ou cômodo onde ainda perde mais tempo',
+    s2Auto1Ph:'Ex: banheiro completo, limpeza de cozinha...',
+    s2Auto2:'Você acredita que o padrão de qualidade exigido é justo e alcançável?',
+    s2Auto2a:'Sim, é justo e já consigo atingir', s2Auto2b:'É justo, mas ainda preciso melhorar', s2Auto2c:'Acho o padrão difícil de alcançar',
+    s2Auto3:'Você se sente parte da equipe da Cavanis Cleaning?',
+    s2Auto3a:'Sim, me sinto bem acolhida', s2Auto3b:'Mais ou menos — ainda estou me adaptando', s2Auto3c:'Não, ainda me sinto de fora',
+    s2NotaLbl:'Como você avalia seu próprio desempenho nesta semana?',
+    s2T1:'Qual foi a dica mais útil que você recebeu nesta semana?',
+    s2T1Ph:'Compartilhe o aprendizado mais valioso...',
+    s2T2:'Existe algum processo que você ainda não se sente 100% segura para fazer sozinha?',
+    s2T2Ph:'Se houver, descreva aqui...',
+    s2Mot:'Você se sente motivada para continuar com mais responsabilidades?',
+    s2Mota:'Sim, muito motivada', s2Motb:'Sim, mas com algumas dúvidas', s2Motc:'Ainda estou avaliando',
+    btnLimpar:'Limpar', btnEnviar:'Enviar',
+    toastEnviado:(n)=>`"${n}" enviado com sucesso!`,
+    s1EnvioLabel:'Avaliação do Treinamento Técnico',
+    s2EnvioLabel:'Avaliação de Agilidade',
+  },
+  en: {
+    topbarSub:'/ Trainee Form',
+    heroEy:'● For Trainees',
+    heroH1:'How is your <em>training going?</em>',
+    heroDesc:'Fill in these forms honestly. Your answers help improve the training process for you and everyone.',
+    pill1:'Your answers will not fail you', pill2:'Technical Phase — 1×/week', pill3:'Agility Phase — 1×/week',
+    nota:'<strong>Important:</strong> This form <strong>does not fail you</strong>. It exists to make training better for you and all future trainees.',
+    tab1:'Weeks 1 and 2 — Technical', tab2:'Weeks 3 and 4 — Agility',
+    ph1H:'Form 1 — Technical Training Evaluation',
+    ph1P:'Fill in once a week during Weeks 1 and 2.',
+    ph1Pill:'W1–2 · 1×/week',
+    ph2H:'Form 2 — Agility Evaluation',
+    ph2P:'Fill in once a week during Weeks 3 and 4.',
+    ph2Pill:'W3–4 · 1×/week',
+    noreprova:'<strong>Remember:</strong> This form <strong>does not fail you</strong>. It exists to make training better.',
+    identH:'Identification', lNome:'Your name', lTr:'Trainer\'s name', lData:'Date', lSem:'Week',
+    semOpt0:'Select', semOpt1:'Week 1', semOpt2:'Week 2', semOpt3:'Week 3', semOpt4:'Week 4',
+    s1ClH:'How clear were the instructions?',
+    s1Cl1:'Were the technical instructions easy to understand?',
+    s1Cl1a:'Yes, I understood everything clearly', s1Cl1b:'Partially — some parts were confusing', s1Cl1c:'No — I had a lot of difficulty',
+    s1Cl2:'Did the trainer demonstrate the process before asking you to do it?',
+    s1Cl2a:'Always', s1Cl2b:'Sometimes', s1Cl2c:'Rarely or never',
+    s1Cl3:'Did you feel comfortable asking questions?',
+    s1Cl3a:'Yes', s1Cl3b:'Sometimes, but I felt a bit hesitant', s1Cl3c:'I did not feel comfortable asking',
+    s1FbH:'How was the trainer\'s feedback?',
+    s1Fb1:'Was the feedback given respectfully and constructively?',
+    s1Fb1a:'Yes, always respectful', s1Fb1b:'Most of the time', s1Fb1c:'No, I felt uncomfortable at some point',
+    s1Fb2:'When the trainer corrected something, was the "why" explanation clear?',
+    s1Fb2a:'Yes, always explained the reason', s1Fb2b:'Sometimes', s1Fb2c:'No, she just said what was wrong',
+    s1Fb3:'Was the trainer available to answer your questions?',
+    s1Fb3a:'Yes, always available', s1Fb3b:'Most of the time', s1Fb3c:'No, I had difficulty getting answers',
+    s1ApH:'About your learning',
+    s1Ap1:'Did you understand the cleaning order and processes this week?',
+    s1Ap1a:'Yes, I understood well', s1Ap1b:'Partially', s1Ap1c:'No, I still have many questions',
+    s1Ap2:'Did you receive all the necessary materials to do a good job?',
+    s1Ap2a:'Yes', s1Ap2b:'Partially — something was missing', s1Ap2c:'No',
+    s1Ap3:'Do you feel comfortable admitting when you forgot to clean a detail?',
+    s1Ap3a:'Yes, I feel comfortable', s1Ap3b:'Sometimes I hesitate', s1Ap3c:'No, I prefer not to admit it',
+    s1NotaLbl:'How do you rate this week\'s training overall?',
+    muitoRuim:'Very poor', excelente:'Excellent',
+    s1T1:'Which part of the training was most difficult for you this week?',
+    s1T1Ph:'Describe what was most challenging...',
+    s1T2:'Is there any product or process you don\'t feel confident using yet?',
+    s1T2Ph:'If so, describe here...',
+    s1T3:'What was the most useful thing you learned this week?',
+    s1T3Ph:'Share your main learning...',
+    s2VelH:'Your speed progress',
+    s2Vel1:'Do you feel faster than at the beginning of training?',
+    s2Vel1a:'Yes, I can clearly see my progress', s2Vel1b:'A little faster, but still struggling', s2Vel1c:'I haven\'t noticed any speed improvement',
+    s2Vel2:'Can you complete most tasks without asking for help constantly?',
+    s2Vel2a:'Yes, I feel more independent', s2Vel2b:'Partially — some tasks still need support', s2Vel2c:'No, I still need a lot of guidance',
+    s2Vel3:'Was the time allocated for tasks realistic for your current level?',
+    s2Vel3a:'Yes, I can finish within the time', s2Vel3b:'Almost — I go a little over on some tasks', s2Vel3c:'No, the time is too short for my current pace',
+    s2FbH:'Feedback and support from trainer',
+    s2Fb1:'Was the feedback about your speed clear and useful?',
+    s2Fb1a:'Yes, I understood what I need to improve', s2Fb1b:'Partially', s2Fb1c:'I didn\'t receive clear feedback',
+    s2Fb2:'Do you feel more confident in your work pace than at the start of training?',
+    s2Fb2a:'Yes, much more confident', s2Fb2b:'A little more confident', s2Fb2c:'I still feel uncertain',
+    s2Fb3:'Is there any equipment or product that would help your agility?',
+    s2Fb3Ph:'If so, describe here...',
+    s2AutoH:'Weekly self-evaluation',
+    s2Auto1:'Task or room where you still lose the most time',
+    s2Auto1Ph:'E.g.: full bathroom, kitchen cleaning, cart organization...',
+    s2Auto2:'Do you believe the quality standard required is fair and achievable?',
+    s2Auto2a:'Yes, it\'s fair and I can already meet it', s2Auto2b:'It\'s fair, but I still need to improve', s2Auto2c:'I find the standard hard to achieve',
+    s2Auto3:'Do you feel part of the Cavanis Cleaning team?',
+    s2Auto3a:'Yes, I feel very welcomed', s2Auto3b:'More or less — I\'m still adapting', s2Auto3c:'No, I still feel like an outsider',
+    s2NotaLbl:'How do you rate your own performance this week?',
+    s2T1:'What was the most useful tip you received this week?',
+    s2T1Ph:'Share the most valuable learning...',
+    s2T2:'Is there any process you don\'t feel 100% confident doing on your own?',
+    s2T2Ph:'If so, describe here...',
+    s2Mot:'Do you feel motivated to take on more responsibilities?',
+    s2Mota:'Yes, very motivated', s2Motb:'Yes, but with some doubts', s2Motc:'I\'m still evaluating',
+    btnLimpar:'Clear', btnEnviar:'Submit',
+    toastEnviado:(n)=>`"${n}" submitted successfully!`,
+    s1EnvioLabel:'Technical Training Evaluation',
+    s2EnvioLabel:'Agility Evaluation',
+  },
+  es: {
+    topbarSub:'/ Formulario de Trainee',
+    heroEy:'● Para Trainees',
+    heroH1:'¿Cómo está yendo tu <em>entrenamiento?</em>',
+    heroDesc:'Completa estos formularios con honestidad. Tus respuestas ayudan a mejorar el proceso de entrenamiento para ti y para todas.',
+    pill1:'Tus respuestas no te reprueban', pill2:'Fase Técnica — 1×/semana', pill3:'Fase Agilidad — 1×/semana',
+    nota:'<strong>Importante:</strong> Este formulario <strong>no te reprueba</strong>. Existe para hacer el entrenamiento mejor para ti y para todas las futuras trainees.',
+    tab1:'Semanas 1 y 2 — Técnica', tab2:'Semanas 3 y 4 — Agilidad',
+    ph1H:'Formulario 1 — Evaluación del Entrenamiento Técnico',
+    ph1P:'Completa una vez por semana durante las Semanas 1 y 2.',
+    ph1Pill:'Sem 1–2 · 1×/semana',
+    ph2H:'Formulario 2 — Evaluación de Agilidad',
+    ph2P:'Completa una vez por semana durante las Semanas 3 y 4.',
+    ph2Pill:'Sem 3–4 · 1×/semana',
+    noreprova:'<strong>Recuerda:</strong> Este formulario <strong>no te reprueba</strong>. Existe para mejorar el entrenamiento.',
+    identH:'Identificación', lNome:'Tu nombre', lTr:'Nombre de la Entrenadora', lData:'Fecha', lSem:'Semana',
+    semOpt0:'Seleccione', semOpt1:'Semana 1', semOpt2:'Semana 2', semOpt3:'Semana 3', semOpt4:'Semana 4',
+    s1ClH:'¿Qué tan claras fueron las instrucciones?',
+    s1Cl1:'¿Las instrucciones técnicas fueron fáciles de entender?',
+    s1Cl1a:'Sí, entendí todo claramente', s1Cl1b:'Parcialmente — algunas partes fueron confusas', s1Cl1c:'No — tuve mucha dificultad',
+    s1Cl2:'¿La entrenadora demostró el proceso antes de pedirte que lo ejecutaras?',
+    s1Cl2a:'Siempre', s1Cl2b:'A veces', s1Cl2c:'Raramente o nunca',
+    s1Cl3:'¿Te sentiste cómoda para hacer preguntas?',
+    s1Cl3a:'Sí', s1Cl3b:'A veces, pero sentí un poco de temor', s1Cl3c:'No me sentí cómoda para preguntar',
+    s1FbH:'¿Cómo fue el feedback de la entrenadora?',
+    s1Fb1:'¿El feedback fue dado de forma respetuosa y constructiva?',
+    s1Fb1a:'Sí, siempre respetuosa', s1Fb1b:'La mayoría de las veces', s1Fb1c:'No, me sentí incómoda en algún momento',
+    s1Fb2:'Cuando la entrenadora corrigió algo, ¿quedó clara la explicación del "porqué"?',
+    s1Fb2a:'Sí, siempre explicó el motivo', s1Fb2b:'A veces', s1Fb2c:'No, solo decía lo que estaba mal',
+    s1Fb3:'¿La entrenadora estuvo disponible para responder tus dudas?',
+    s1Fb3a:'Sí, siempre disponible', s1Fb3b:'La mayoría de las veces', s1Fb3c:'No, tuve dificultad para resolver mis dudas',
+    s1ApH:'Sobre tu aprendizaje',
+    s1Ap1:'¿Entendiste el orden y los procesos de limpieza de esta semana?',
+    s1Ap1a:'Sí, entendí bien', s1Ap1b:'Parcialmente', s1Ap1c:'No, aún tengo muchas dudas',
+    s1Ap2:'¿Recibiste todos los materiales necesarios para hacer un buen trabajo?',
+    s1Ap2a:'Sí', s1Ap2b:'Parcialmente — faltó algo', s1Ap2c:'No',
+    s1Ap3:'¿Te sientes cómoda admitiendo cuando olvidaste limpiar algún detalle?',
+    s1Ap3a:'Sí, me siento cómoda', s1Ap3b:'A veces tengo temor', s1Ap3c:'No, prefiero no admitirlo',
+    s1NotaLbl:'¿Cómo evalúas el entrenamiento de esta semana en general?',
+    muitoRuim:'Muy malo', excelente:'Excelente',
+    s1T1:'¿Qué parte del entrenamiento fue más difícil para ti esta semana?',
+    s1T1Ph:'Describe lo que fue más desafiante...',
+    s1T2:'¿Hay algún producto o proceso con el que aún no te sientes segura?',
+    s1T2Ph:'Si hay alguno, descríbelo aquí...',
+    s1T3:'¿Qué aprendiste más útil esta semana?',
+    s1T3Ph:'Comparte el aprendizaje principal...',
+    s2VelH:'Tu evolución de velocidad',
+    s2Vel1:'¿Te sientes más rápida que al inicio del entrenamiento?',
+    s2Vel1a:'Sí, percibo claramente mi evolución', s2Vel1b:'Un poco más rápida, pero aún con dificultad', s2Vel1c:'Aún no percibo mejora de velocidad',
+    s2Vel2:'¿Puedes ejecutar la mayoría de las tareas sin preguntar constantemente?',
+    s2Vel2a:'Sí, me siento más independiente', s2Vel2b:'Parcialmente — algunas tareas aún necesitan apoyo', s2Vel2c:'No, aún necesito mucha orientación',
+    s2Vel3:'¿El tiempo estipulado para las tareas fue realista para tu nivel actual?',
+    s2Vel3a:'Sí, puedo terminar dentro del tiempo', s2Vel3b:'Casi — me paso un poco del tiempo en algunas tareas', s2Vel3c:'No, el tiempo es muy corto para mi ritmo actual',
+    s2FbH:'Feedback y apoyo de la entrenadora',
+    s2Fb1:'¿El feedback sobre tu velocidad fue claro y útil?',
+    s2Fb1a:'Sí, entendí bien lo que debo mejorar', s2Fb1b:'Parcialmente', s2Fb1c:'No recibí feedback claro',
+    s2Fb2:'¿Te sientes más segura en tu ritmo de trabajo que al inicio del entrenamiento?',
+    s2Fb2a:'Sí, mucho más segura', s2Fb2b:'Un poco más segura', s2Fb2c:'Aún me siento insegura',
+    s2Fb3:'¿Hay algún equipo o producto que ayudaría tu agilidad?',
+    s2Fb3Ph:'Si hay alguno, descríbelo aquí...',
+    s2AutoH:'Autoevaluación de la semana',
+    s2Auto1:'Tarea o habitación donde aún pierdes más tiempo',
+    s2Auto1Ph:'Ej: baño completo, limpieza de cocina...',
+    s2Auto2:'¿Crees que el estándar de calidad exigido es justo y alcanzable?',
+    s2Auto2a:'Sí, es justo y ya puedo alcanzarlo', s2Auto2b:'Es justo, pero aún necesito mejorar', s2Auto2c:'Encuentro el estándar difícil de alcanzar',
+    s2Auto3:'¿Te sientes parte del equipo de Cavanis Cleaning?',
+    s2Auto3a:'Sí, me siento muy bienvenida', s2Auto3b:'Más o menos — aún me estoy adaptando', s2Auto3c:'No, aún me siento de fuera',
+    s2NotaLbl:'¿Cómo evalúas tu propio desempeño esta semana?',
+    s2T1:'¿Cuál fue el consejo más útil que recibiste esta semana?',
+    s2T1Ph:'Comparte el aprendizaje más valioso...',
+    s2T2:'¿Hay algún proceso con el que aún no te sientes 100% segura para hacer sola?',
+    s2T2Ph:'Si hay alguno, descríbelo aquí...',
+    s2Mot:'¿Te sientes motivada para asumir más responsabilidades?',
+    s2Mota:'Sí, muy motivada', s2Motb:'Sí, pero con algunas dudas', s2Motc:'Aún estoy evaluando',
+    btnLimpar:'Limpiar', btnEnviar:'Enviar',
+    toastEnviado:(n)=>`"${n}" enviado con éxito!`,
+    s1EnvioLabel:'Evaluación del Entrenamiento Técnico',
+    s2EnvioLabel:'Evaluación de Agilidad',
+  }
+};
+
+let lang = 'pt';
+const T = () => LANGS[lang];
+
+function setLang(l) {
+  lang = l;
+  try { localStorage.setItem('cavanis_lang_trainee', l); } catch(e) {}
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('on', b.textContent === l.toUpperCase()));
+  applyLang();
+}
+
+function applyLang() {
+  const t = T();
+  const set = (id, v) => { const el = document.getElementById(id); if(el) el.innerHTML = v; };
+  const setT = (id, v) => { const el = document.getElementById(id); if(el) el.textContent = v; };
+
+  set('topbar-sub', t.topbarSub);
+  set('hero-ey', t.heroEy);
+  set('hero-h1', t.heroH1);
+  setT('hero-desc', t.heroDesc);
+  document.getElementById('hero-pills').innerHTML =
+    `<div class="pill"><div class="dot"></div>${t.pill1}</div>` +
+    `<div class="pill"><div class="dot"></div>${t.pill2}</div>` +
+    `<div class="pill"><div class="dot"></div>${t.pill3}</div>`;
+  set('nota-txt', t.nota);
+  setT('tab-s1-lbl', t.tab1); setT('tab-s2-lbl', t.tab2);
+  set('ph1-h', t.ph1H); setT('ph1-p', t.ph1P); setT('ph1-pill', t.ph1Pill);
+  set('ph2-h', t.ph2H); setT('ph2-p', t.ph2P); setT('ph2-pill', t.ph2Pill);
+  set('noreprova-txt', t.noreprova); set('noreprova-txt2', t.noreprova);
+  setT('s1-ident-h', t.identH); setT('s2-ident-h', t.identH);
+  setT('s1-l-nome', t.lNome); setT('s1-l-tr', t.lTr); setT('s1-l-data', t.lData); setT('s1-l-sem', t.lSem);
+  setT('s2-l-nome', t.lNome); setT('s2-l-tr', t.lTr); setT('s2-l-data', t.lData); setT('s2-l-sem', t.lSem);
+  setT('s1-opt0', t.semOpt0); setT('s1-opt1', t.semOpt1); setT('s1-opt2', t.semOpt2);
+  setT('s2-opt0', t.semOpt0); setT('s2-opt3', t.semOpt3); setT('s2-opt4', t.semOpt4);
+  setT('s1-cl-h', t.s1ClH); setT('s1-fb-h', t.s1FbH); setT('s1-ap-h', t.s1ApH);
+  setT('s2-vel-h', t.s2VelH); setT('s2-fb-h', t.s2FbH); setT('s2-auto-h', t.s2AutoH);
+
+  const ro = (name, val, label) => `<div class="ro"><input type="radio" name="${name}" value="${val}"><label>${label}</label></div>`;
+  const scoreRow = (id) => `<div class="score-row" id="${id}">${[1,2,3,4,5].map(v=>`<button class="sb" onclick="scSimp(this,'${id}')">${v}</button>`).join('')}</div>`;
+  const saveSvg = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>`;
+
+  // S1 CLAREZA
+  document.getElementById('s1-cl-body').innerHTML =
+    `<div class="field"><label class="fl">${t.s1Cl1} <span class="req">*</span></label><div class="rg">${ro('s1_cl','a',t.s1Cl1a)+ro('s1_cl','b',t.s1Cl1b)+ro('s1_cl','c',t.s1Cl1c)}</div></div>` +
+    `<div class="field"><label class="fl">${t.s1Cl2} <span class="req">*</span></label><div class="rg">${ro('s1_dem','a',t.s1Cl2a)+ro('s1_dem','b',t.s1Cl2b)+ro('s1_dem','c',t.s1Cl2c)}</div></div>` +
+    `<div class="field"><label class="fl">${t.s1Cl3} <span class="req">*</span></label><div class="rg">${ro('s1_dv','a',t.s1Cl3a)+ro('s1_dv','b',t.s1Cl3b)+ro('s1_dv','c',t.s1Cl3c)}</div></div>`;
+
+  // S1 FEEDBACK
+  document.getElementById('s1-fb-body').innerHTML =
+    `<div class="field"><label class="fl">${t.s1Fb1} <span class="req">*</span></label><div class="rg">${ro('s1_fb','a',t.s1Fb1a)+ro('s1_fb','b',t.s1Fb1b)+ro('s1_fb','c',t.s1Fb1c)}</div></div>` +
+    `<div class="field"><label class="fl">${t.s1Fb2} <span class="req">*</span></label><div class="rg">${ro('s1_por','a',t.s1Fb2a)+ro('s1_por','b',t.s1Fb2b)+ro('s1_por','c',t.s1Fb2c)}</div></div>` +
+    `<div class="field"><label class="fl">${t.s1Fb3} <span class="req">*</span></label><div class="rg">${ro('s1_disp','a',t.s1Fb3a)+ro('s1_disp','b',t.s1Fb3b)+ro('s1_disp','c',t.s1Fb3c)}</div></div>`;
+
+  // S1 APRENDIZADO
+  document.getElementById('s1-ap-body').innerHTML =
+    `<div class="field"><label class="fl">${t.s1Ap1} <span class="req">*</span></label><div class="rg">${ro('s1_pr','a',t.s1Ap1a)+ro('s1_pr','b',t.s1Ap1b)+ro('s1_pr','c',t.s1Ap1c)}</div></div>` +
+    `<div class="field"><label class="fl">${t.s1Ap2} <span class="req">*</span></label><div class="rg">${ro('s1_mat','a',t.s1Ap2a)+ro('s1_mat','b',t.s1Ap2b)+ro('s1_mat','c',t.s1Ap2c)}</div></div>` +
+    `<div class="field"><label class="fl">${t.s1Ap3} <span class="req">*</span></label><div class="rg">${ro('s1_seg','a',t.s1Ap3a)+ro('s1_seg','b',t.s1Ap3b)+ro('s1_seg','c',t.s1Ap3c)}</div></div>` +
+    `<hr class="div">` +
+    `<div class="field"><label class="fl">${t.s1NotaLbl} <span class="req">*</span></label>${scoreRow('g_s1')}<div class="sc-labels"><span>${t.muitoRuim}</span><span>${t.excelente}</span></div></div>` +
+    `<div class="field"><label class="fl">${t.s1T1}</label><textarea placeholder="${t.s1T1Ph}"></textarea></div>` +
+    `<div class="field"><label class="fl">${t.s1T2}</label><textarea placeholder="${t.s1T2Ph}"></textarea></div>` +
+    `<div class="field"><label class="fl">${t.s1T3}</label><textarea placeholder="${t.s1T3Ph}"></textarea></div>` +
+    `<div class="acts"><button class="btn-g" onclick="cls('s1')">${t.btnLimpar}</button><button class="btn-p" onclick="send('${t.s1EnvioLabel}')">${saveSvg}${t.btnEnviar}</button></div>`;
+
+  // S2 VELOCIDADE
+  document.getElementById('s2-vel-body').innerHTML =
+    `<div class="field"><label class="fl">${t.s2Vel1} <span class="req">*</span></label><div class="rg">${ro('s2_v1','a',t.s2Vel1a)+ro('s2_v1','b',t.s2Vel1b)+ro('s2_v1','c',t.s2Vel1c)}</div></div>` +
+    `<div class="field"><label class="fl">${t.s2Vel2} <span class="req">*</span></label><div class="rg">${ro('s2_v2','a',t.s2Vel2a)+ro('s2_v2','b',t.s2Vel2b)+ro('s2_v2','c',t.s2Vel2c)}</div></div>` +
+    `<div class="field"><label class="fl">${t.s2Vel3} <span class="req">*</span></label><div class="rg">${ro('s2_t','a',t.s2Vel3a)+ro('s2_t','b',t.s2Vel3b)+ro('s2_t','c',t.s2Vel3c)}</div></div>`;
+
+  // S2 FEEDBACK
+  document.getElementById('s2-fb-body').innerHTML =
+    `<div class="field"><label class="fl">${t.s2Fb1} <span class="req">*</span></label><div class="rg">${ro('s2_fb','a',t.s2Fb1a)+ro('s2_fb','b',t.s2Fb1b)+ro('s2_fb','c',t.s2Fb1c)}</div></div>` +
+    `<div class="field"><label class="fl">${t.s2Fb2} <span class="req">*</span></label><div class="rg">${ro('s2_conf','a',t.s2Fb2a)+ro('s2_conf','b',t.s2Fb2b)+ro('s2_conf','c',t.s2Fb2c)}</div></div>` +
+    `<div class="field"><label class="fl">${t.s2Fb3}</label><textarea placeholder="${t.s2Fb3Ph}"></textarea></div>`;
+
+  // S2 AUTOAVALIAÇÃO
+  document.getElementById('s2-auto-body').innerHTML =
+    `<div class="field"><label class="fl">${t.s2Auto1}</label><textarea placeholder="${t.s2Auto1Ph}"></textarea></div>` +
+    `<div class="field"><label class="fl">${t.s2Auto2} <span class="req">*</span></label><div class="rg">${ro('s2_jus','a',t.s2Auto2a)+ro('s2_jus','b',t.s2Auto2b)+ro('s2_jus','c',t.s2Auto2c)}</div></div>` +
+    `<div class="field"><label class="fl">${t.s2Auto3} <span class="req">*</span></label><div class="rg">${ro('s2_eq','a',t.s2Auto3a)+ro('s2_eq','b',t.s2Auto3b)+ro('s2_eq','c',t.s2Auto3c)}</div></div>` +
+    `<hr class="div">` +
+    `<div class="field"><label class="fl">${t.s2NotaLbl} <span class="req">*</span></label>${scoreRow('g_s2')}<div class="sc-labels"><span>${t.muitoRuim}</span><span>${t.excelente}</span></div></div>` +
+    `<div class="field"><label class="fl">${t.s2T1}</label><textarea placeholder="${t.s2T1Ph}"></textarea></div>` +
+    `<div class="field"><label class="fl">${t.s2T2}</label><textarea placeholder="${t.s2T2Ph}"></textarea></div>` +
+    `<div class="field"><label class="fl">${t.s2Mot} <span class="req">*</span></label><div class="rg">${ro('s2_mot','a',t.s2Mota)+ro('s2_mot','b',t.s2Motb)+ro('s2_mot','c',t.s2Motc)}</div></div>` +
+    `<div class="acts"><button class="btn-g" onclick="cls('s2')">${t.btnLimpar}</button><button class="btn-p" onclick="send('${t.s2EnvioLabel}')">${saveSvg}${t.btnEnviar}</button></div>`;
+}
+
+function go(id) {
+  ['s1','s2'].forEach(s => document.getElementById(s).classList.toggle('on', s===id));
+  document.querySelectorAll('.tab').forEach((b,i) => b.classList.toggle('on', ['s1','s2'][i]===id));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function scSimp(btn, gid) {
+  document.getElementById(gid).querySelectorAll('.sb').forEach(b => b.classList.remove('sel'));
+  btn.classList.add('sel');
+}
+
+// ══════════════════════════════════════════════════════
+// CONFIGURAÇÃO — cole aqui a URL do seu Apps Script
+// ══════════════════════════════════════════════════════
+const SHEET_URL = 'COLE_AQUI_A_URL_DO_APPS_SCRIPT';
+
+function getRadio(name) {
+  const el = document.querySelector(`input[name="${name}"]:checked`);
+  return el ? el.value : '';
+}
+function getScore(gid) {
+  const sel = document.querySelector(`#${gid} .sb.sel`);
+  return sel ? sel.textContent.trim() : '';
+}
+function getVal(id) {
+  const el = document.getElementById(id);
+  return el ? el.value.trim() : '';
+}
+function getTextareas(sectionId) {
+  const areas = document.querySelectorAll(`#${sectionId} textarea`);
+  const result = {};
+  areas.forEach((ta, i) => { result[`textarea_${i+1}`] = ta.value.trim(); });
+  return result;
+}
+
+function collectData(section) {
+  const t = T();
+  const base = {
+    timestamp: new Date().toISOString(),
+    idioma: lang,
+    formulario: section === 's1' ? t.s1EnvioLabel : t.s2EnvioLabel,
+  };
+  if (section === 's1') {
+    return { ...base,
+      nome:         getVal('s1_nome'),
+      treinadora:   getVal('s1_tr'),
+      data:         getVal('s1_data'),
+      semana:       getVal('s1_sem'),
+      clareza_instrucoes:   getRadio('s1_cl'),
+      demonstrou_processo:  getRadio('s1_dem'),
+      vontade_perguntas:    getRadio('s1_dv'),
+      feedback_respeitoso:  getRadio('s1_fb'),
+      explicou_porque:      getRadio('s1_por'),
+      treinadora_disponivel:getRadio('s1_disp'),
+      entendeu_processos:   getRadio('s1_pr'),
+      recebeu_materiais:    getRadio('s1_mat'),
+      segura_admitir:       getRadio('s1_seg'),
+      nota_geral:           getScore('g_s1'),
+      ...getTextareas('s1'),
+    };
+  } else {
+    return { ...base,
+      nome:         getVal('s2_nome'),
+      treinadora:   getVal('s2_tr'),
+      data:         getVal('s2_data'),
+      semana:       getVal('s2_sem'),
+      mais_rapida:        getRadio('s2_v1'),
+      tarefas_sem_perguntar: getRadio('s2_v2'),
+      tempo_realista:     getRadio('s2_t'),
+      feedback_velocidade:getRadio('s2_fb'),
+      mais_confiante:     getRadio('s2_conf'),
+      padrao_justo:       getRadio('s2_jus'),
+      parte_equipe:       getRadio('s2_eq'),
+      nota_desempenho:    getScore('g_s2'),
+      motivada:           getRadio('s2_mot'),
+      ...getTextareas('s2'),
+    };
+  }
+}
+
+function validateSection(section) {
+  const data = collectData(section);
+  if (!data.nome) { alert('Por favor, informe seu nome.'); return false; }
+  if (!data.semana) { alert('Por favor, selecione a semana.'); return false; }
+  const nota = section === 's1' ? data.nota_geral : data.nota_desempenho;
+  if (!nota) { alert('Por favor, atribua uma nota geral.'); return false; }
+  return true;
+}
+
+async function send(name) {
+  const section = name.includes(T().s1EnvioLabel) || name === T().s1EnvioLabel ? 's1' : 's2';
+  if (!validateSection(section)) return;
+
+  // Localiza o botão e coloca spinner
+  const btn = document.querySelector(`#${section} .btn-p`);
+  const originalHTML = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = `<span class="spin"></span> Enviando...`;
+
+  const data = collectData(section);
+
+  // Se URL não foi configurada, mostra toast de aviso e restaura
+  if (SHEET_URL === 'COLE_AQUI_A_URL_DO_APPS_SCRIPT') {
+    setTimeout(() => {
+      btn.disabled = false;
+      btn.innerHTML = originalHTML;
+      toast('⚠️ URL do Apps Script não configurada.');
+    }, 800);
+    return;
+  }
+
+  try {
+    // Google Apps Script requer no-cors; a resposta será opaque mas o dado chega
+    await fetch(SHEET_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+    btn.disabled = false;
+    btn.innerHTML = originalHTML;
+    toast(T().toastEnviado(name));
+    // Limpa o formulário após envio bem-sucedido
+    setTimeout(() => cls(section), 1200);
+  } catch (err) {
+    btn.disabled = false;
+    btn.innerHTML = originalHTML;
+    toast('Erro ao enviar. Verifique sua conexão.');
+    console.error(err);
+  }
+}
+
+function toast(msg) {
+  const t = document.getElementById('toast');
+  document.getElementById('toast_m').textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3500);
+}
+
+function cls(id) {
+  const s = document.getElementById(id);
+  s.querySelectorAll('input[type=text],input[type=date],textarea').forEach(e => e.value = '');
+  s.querySelectorAll('input[type=radio]').forEach(e => e.checked = false);
+  s.querySelectorAll('select').forEach(e => e.selectedIndex = 0);
+  s.querySelectorAll('.sb').forEach(b => b.classList.remove('sel'));
+  document.querySelectorAll('.auto-date').forEach(e => e.valueAsDate = new Date());
+}
+
+// INIT
+try { const l = localStorage.getItem('cavanis_lang_trainee'); if(l && LANGS[l]) lang = l; } catch(e) {}
+document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('on', b.textContent === lang.toUpperCase()));
+applyLang();
+document.querySelectorAll('.auto-date').forEach(e => e.valueAsDate = new Date());
+</script>
+</body>
+</html>
