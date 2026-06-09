@@ -633,14 +633,9 @@ async function send(name) {
   const data = collectData(section);
 
   try {
-    // Apps Script com no-cors só lê parâmetros via URLSearchParams (form data)
-    const params = new URLSearchParams();
-    params.append('payload', JSON.stringify(data));
-    await fetch(SHEET_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      body: params,
-    });
+    // GET com parâmetro na URL — único método 100% confiável com no-cors no Apps Script
+    const url = SHEET_URL + '?payload=' + encodeURIComponent(JSON.stringify(data));
+    await fetch(url, { method: 'GET', mode: 'no-cors' });
     btn.disabled = false;
     btn.innerHTML = originalHTML;
     toast(T().toastEnviado(name));
